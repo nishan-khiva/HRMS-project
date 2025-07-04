@@ -1,0 +1,180 @@
+.register-container {
+    display: flex;
+    flex-direction: row;
+    height: 624px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    overflow: hidden;
+    margin: 40px auto;
+    width: 1360px;
+  }
+  
+  .register-left {
+    background: #4D007D;
+    color: #fff;
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+    text-align: center;
+  }
+  
+  .register-image {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  }
+  
+  .register-left h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .register-left p {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  
+  .register-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    opacity: 0.5;
+    border-radius: 50%;
+    display: inline-block;
+    transition: opacity 0.2s;
+  }
+  .dot.active {
+    opacity: 1;
+  }
+  
+  .register-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 30px;
+    background: #fff;
+  }
+  
+  .register-form {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .register-form h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #222;
+    text-align: left;
+    font-family:'Nunito';
+  }
+  
+  .register-form label {
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 2px;
+  }
+  
+  .register-form label span {
+    color: #a100ff;
+    margin-left: 2px;
+  }
+  
+  .register-form input {
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 7px;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 6px;
+    background: #fafafa;
+    transition: border 0.2s;
+  }
+  
+  .register-form input:focus {
+    border: 1.5px solid #a100ff;
+  }
+  
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggle-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #a100ff;
+    font-size: 1.2rem;
+  }
+  
+  .register-btn {
+    margin-top: 10px;
+    padding: 10px 0;
+    background: #4D007D;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(161,0,255,0.10);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .register-btn:hover {
+    background: linear-gradient(90deg, #4B0076 0%, #a100ff 100%);
+  }
+  
+  .login-link {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #888;
+    text-align: left;
+  }
+  
+  .login-link-text {
+    color: #4B0076;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 900px) {
+    .register-container {
+      flex-direction: column;
+      max-width: 98vw;
+      min-height: unset;
+    }
+    .register-left, .register-right {
+      flex: unset;
+      width: 100%;
+      padding: 30px 10px;
+    }
+    .register-image {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
