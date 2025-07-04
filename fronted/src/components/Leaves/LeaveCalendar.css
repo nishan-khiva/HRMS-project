@@ -1,0 +1,9 @@
+.leave-calendar-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #eee;
+  margin-top: 16px;
+  min-width: 320px;
+  max-width: 400px;
+  overflow: hidden;
+} 

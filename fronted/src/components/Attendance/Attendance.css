@@ -1,0 +1,136 @@
+/* Attendance Table Styles */
+.attendance-table-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #eee;
+  margin-top: 16px;
+}
+
+.attendance-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.attendance-table th {
+  background: #4B1979;
+  color: #fff;
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.attendance-table td {
+  padding: 16px 12px;
+  color: #333;
+}
+
+.attendance-profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.attendance-status-btn {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 4px 16px;
+  background: #fff;
+  color: #388e3c;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.attendance-status-btn.absent {
+  color: #f44336;
+  border-color: #f44336;
+}
+
+.attendance-status-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+  min-width: 120px;
+  margin-top: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+.attendance-status-option {
+  padding: 10px 16px;
+  cursor: pointer;
+  color: #4B1979;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.attendance-status-option:last-child {
+  border-bottom: none;
+}
+
+.attendance-status-option:hover {
+  background: #f8f9fa;
+}
+
+.attendance-action-menu-container {
+  position: relative;
+}
+
+.attendance-action-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  z-index: 10;
+  min-width: 120px;
+  border: 1px solid #eee;
+  animation: fadeIn 0.2s ease;
+}
+
+.attendance-action-menu-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.attendance-action-menu-item:last-child {
+  border-bottom: none;
+}
+
+.attendance-action-menu-item:hover {
+  background-color: #f8f9fa;
+}
+
+.attendance-action-menu-item.delete {
+  color: #f44336;
+}
+
+.attendance-action-menu-item.delete:hover {
+  background-color: #ffebee;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

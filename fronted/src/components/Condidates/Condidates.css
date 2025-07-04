@@ -1,0 +1,258 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: row;
+}
+
+.header-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.menubar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+/* Add slide-in animation for feedback toast */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Table container styling */
+.table-container {
+  overflow-y: auto;
+  max-height: 70vh;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.table-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Table styling */
+.candidates-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+/* Action menu styling */
+.action-menu-container {
+  position: relative;
+  
+}
+
+.action-menu-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 18px;
+}
+
+.action-menu-btn:hover {
+  background: none;
+}
+
+.action-menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  z-index: 10;
+  min-width: 160px;
+  border: 1px solid #eee;
+  animation: fadeIn 0.2s ease;
+}
+
+.action-menu-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.action-menu-item:last-child {
+  border-bottom: none;
+}
+
+.action-menu-item:hover {
+  background-color: #f8f9fa;
+}
+
+.action-menu-item.delete:hover {
+  background-color: #ffebee;
+}
+
+.action-menu-item.delete {
+  color: #f44336;
+}
+
+/* Dropdown button styling */
+.dropdown-btn {
+  background: transparent;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-btn:hover {
+  border-color: #4B1979;
+  color: #4B1979;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+  min-width: 150px;
+  margin-top: 4px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown item styling */
+.dropdown-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+/* Search input styling */
+.search-input {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  min-width: 250px;
+  flex: 1;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #4B1979;
+}
+
+/* Add candidate button styling */
+.add-btn {
+  background: #4B1979;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.add-btn:hover {
+  background: #3a1461;
+}
+
+/* Active filter tags styling */
+.filter-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-tag.position {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.filter-tag button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  margin-left: 4px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .menubar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-input {
+    min-width: auto;
+  }
+  
+  .dropdown-btn {
+    min-width: auto;
+    justify-content: space-between;
+  }
+}
