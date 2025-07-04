@@ -13,19 +13,19 @@ const Sidebar = () => (
     <input className="sidebar-search" placeholder="Search" />
     <div className="sidebar-section">
       <div className="sidebar-section-title">Recruitment</div>
-      <NavLink to="/candidates" className="sidebar-link">
+      <NavLink to="candidates" className="sidebar-link">
         <FaUserFriends /> Candidates
       </NavLink>
     </div>
     <div className="sidebar-section">
       <div className="sidebar-section-title">Organization</div>
-      <NavLink to="/employees" className="sidebar-link">
+      <NavLink to="employees" className="sidebar-link">
         <FaUsers /> Employees
       </NavLink>
-      <NavLink to="/attendance" className="sidebar-link">
+      <NavLink to="attendance" className="sidebar-link">
         <FaCalendarAlt /> Attendance
       </NavLink>
-      <NavLink to="/leaves" className="sidebar-link">
+      <NavLink to="leaves" className="sidebar-link">
         <FaClipboardList /> Leaves
       </NavLink>
     </div>
