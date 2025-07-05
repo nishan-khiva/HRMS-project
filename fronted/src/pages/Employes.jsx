@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FiMoreVertical, FiEdit, FiTrash2, FiChevronDown } from 'react-icons/fi';
 import '../components/Employees/Employees.css';
+import Header from '../components/Header';
+import EmployeeEditForm from '../components/Employees/EmployeeEditForm';
 
 const initialEmployees = [
   {
@@ -63,6 +65,8 @@ const Employes = () => {
   const [positionFilter, setPositionFilter] = useState('All');
   const [menuOpen, setMenuOpen] = useState(null);
   const [positionDropdownOpen, setPositionDropdownOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState(null);
 
   const filteredEmployees = employees.filter(emp => {
     const matchesSearch = emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -89,11 +93,28 @@ const Employes = () => {
     };
   }, []);
 
+  const handleEdit = (employee) => {
+    setEditingEmployee(employee);
+    setEditModalOpen(true);
+    setMenuOpen(null);
+  };
+
+  const handleSaveEdit = (updatedEmployee) => {
+    setEmployees(prev => prev.map(emp => 
+      emp.id === updatedEmployee.id ? updatedEmployee : emp
+    ));
+    setEditModalOpen(false);
+    setEditingEmployee(null);
+  };
+
+  const handleCloseEdit = () => {
+    setEditModalOpen(false);
+    setEditingEmployee(null);
+  };
+
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-        <h2 style={{marginLeft: 24}}>Employees</h2>
-      </div>
+      <Header title="Employees" count={filteredEmployees.length} />
       <div className="menubar" style={{ marginBottom: 0 }}>
         {/* Position Dropdown */}
         <div className="emp-position-dropdown-container" style={{ position: 'relative' }}>
@@ -159,7 +180,18 @@ const Employes = () => {
                   <div className="emp-action-menu-container">
                     <button
                       className="action-menu-btn"
-                      onClick={() => setMenuOpen(menuOpen === emp.id ? null : emp.id)}
+                      onClick={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        setMenuOpen(menuOpen === emp.id ? null : emp.id);
+                        if (menuOpen !== emp.id) {
+                          // Position the dropdown
+                          const dropdown = document.querySelector('.emp-action-menu');
+                          if (dropdown) {
+                            dropdown.style.left = `${rect.left - 120}px`;
+                            dropdown.style.top = `${rect.bottom + 5}px`;
+                          }
+                        }
+                      }}
                     >
                       <FiMoreVertical size={16} />
                     </button>
@@ -167,10 +199,7 @@ const Employes = () => {
                       <div className="emp-action-menu">
                         <div
                           className="emp-action-menu-item"
-                          onClick={() => {
-                            // Edit logic here
-                            setMenuOpen(null);
-                          }}
+                          onClick={() => handleEdit(emp)}
                         >
                           <FiEdit size={14} /> Edit
                         </div>
@@ -192,6 +221,14 @@ const Employes = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Edit Form Modal */}
+      <EmployeeEditForm
+        employee={editingEmployee}
+        isOpen={editModalOpen}
+        onClose={handleCloseEdit}
+        onSave={handleSaveEdit}
+      />
     </div>
   );
 };

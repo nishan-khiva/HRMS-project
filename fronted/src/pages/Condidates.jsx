@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { MdOutlineEmail } from 'react-icons/md';
-import { FaBell } from 'react-icons/fa';
-import { HiOutlineUser, HiOutlineChevronDown } from 'react-icons/hi';
 import { FiChevronDown } from 'react-icons/fi';
 import '../components/Condidates/Condidates.css';
+import Header from '../components/Header';
 
 import CandidatesTable from '../components/Condidates/CandidatesTable';
 import CandidateForm from '../components/Condidates/CandidateForm';
@@ -65,8 +63,8 @@ const Candidates = () => {
   // Filter candidates based on search, status, and position
   const filteredCandidates = candidates.filter(candidate => {
     const matchesSearch = candidate.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         candidate.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         candidate.position.toLowerCase().includes(searchTerm.toLowerCase());
+      candidate.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      candidate.position.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'All' || candidate.status === statusFilter;
     const matchesPosition = positionFilter === 'All' || candidate.position.toLowerCase().includes(positionFilter.toLowerCase());
     return matchesSearch && matchesStatus && matchesPosition;
@@ -96,7 +94,7 @@ const Candidates = () => {
   };
 
   const handleStatusChange = (candidateId, newStatus) => {
-    setCandidates(prev => 
+    setCandidates(prev =>
       prev.map(c => c.id === candidateId ? { ...c, status: newStatus } : c)
     );
     showFeedback('Status updated successfully!');
@@ -145,102 +143,97 @@ const Candidates = () => {
         </div>
       )}
 
-      <div className='header'>
-        <h2>Candidates ({filteredCandidates.length})</h2>
-        <div className='header-icons'>
-          <MdOutlineEmail />
-          <FaBell />
-          <HiOutlineUser />
-          <HiOutlineChevronDown />
-        </div>
-      </div>
+      <Header title="Candidates" count={filteredCandidates.length} />
 
       <div className="menubar">
-        {/* New Dropdown */}
-        <div className="dropdown-container" style={{ position: 'relative' }}>
-          <button 
-            className="dropdown-btn"
-            onClick={() => setNewDropdownOpen(!newDropdownOpen)}
-          >
-            New
-            <FiChevronDown size={14} />
-          </button>
-          {newDropdownOpen && (
-            <div className="dropdown-menu">
-              {statusOptions.map(option => (
-                <div 
-                  key={option}
-                  className="dropdown-item"
-                  onClick={() => {
-                    setStatusFilter(option);
-                    setNewDropdownOpen(false);
-                  }}
-                >
-                  {option}
-                </div>
-              ))}
-            </div>
-          )}
+        <div className="menubar-left">
+          {/* New Dropdown */}
+          <div className="dropdown-container" style={{ position: 'relative' }}>
+            <button
+              className="dropdown-btn"
+              onClick={() => setNewDropdownOpen(!newDropdownOpen)}
+            >
+              New
+              <FiChevronDown size={14} />
+            </button>
+            {newDropdownOpen && (
+              <div className="dropdown-menu">
+                {statusOptions.map(option => (
+                  <div
+                    key={option}
+                    className="dropdown-item"
+                    onClick={() => {
+                      setStatusFilter(option);
+                      setNewDropdownOpen(false);
+                    }}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Position Dropdown */}
+          <div className="dropdown-container" style={{ position: 'relative' }}>
+            <button
+              className="dropdown-btn"
+              onClick={() => setPositionDropdownOpen(!positionDropdownOpen)}
+            >
+              Position
+              <FiChevronDown size={14} />
+            </button>
+            {positionDropdownOpen && (
+              <div className="dropdown-menu">
+                {positionOptions.map(option => (
+                  <div
+                    key={option}
+                    className="dropdown-item"
+                    onClick={() => {
+                      setPositionFilter(option);
+                      setPositionDropdownOpen(false);
+                    }}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Position Dropdown */}
-        <div className="dropdown-container" style={{ position: 'relative' }}>
-          <button 
-            className="dropdown-btn"
-            onClick={() => setPositionDropdownOpen(!positionDropdownOpen)}
+        <div className="menubar-right">
+          {/* Search Input */}
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+
+          {/* Add Candidate Button */}
+          <button
+            onClick={() => setFormOpen(true)}
+            className="add-btn"
           >
-            Position
-            <FiChevronDown size={14} />
+            <span style={{ fontSize: '18px' }}>+</span> Add Candidate
           </button>
-          {positionDropdownOpen && (
-            <div className="dropdown-menu">
-              {positionOptions.map(option => (
-                <div 
-                  key={option}
-                  className="dropdown-item"
-                  onClick={() => {
-                    setPositionFilter(option);
-                    setPositionDropdownOpen(false);
-                  }}
-                >
-                  {option}
-                </div>
-              ))}
-            </div>
-          )}
         </div>
-
-        {/* Search Input */}
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
-          className="search-input"
-          style={{ minWidth: 220 }}
-        />
-
-        {/* Add Candidate Button */}
-        <button 
-          onClick={() => setFormOpen(true)}
-          className="add-btn"
-        >
-          <span style={{ fontSize: '18px' }}>+</span> Add Candidate
-        </button>
       </div>
 
       {/* Active Filters Display */}
       {(statusFilter !== 'All' || positionFilter !== 'All') && (
-        <div style={{ 
-          display: 'flex', 
-          gap: 8, 
-          marginBottom: 16,
+        <div style={{
+          display: 'flex',
+          gap: 8,
+          margin: '0 32px 16px 32px',
           flexWrap: 'wrap'
         }}>
           {statusFilter !== 'All' && (
             <span className="filter-tag">
               Status: {statusFilter}
-              <button 
+              <button
                 onClick={() => setStatusFilter('All')}
               >
                 ×
@@ -250,7 +243,7 @@ const Candidates = () => {
           {positionFilter !== 'All' && (
             <span className="filter-tag position">
               Position: {positionFilter}
-              <button 
+              <button
                 onClick={() => setPositionFilter('All')}
               >
                 ×
@@ -260,17 +253,19 @@ const Candidates = () => {
         </div>
       )}
 
-      <CandidatesTable 
-        candidates={filteredCandidates}
-        onDelete={handleDelete} 
-        onDownload={handleDownload}
-        onStatusChange={handleStatusChange}
-      />
-      
-      <CandidateForm 
-        open={formOpen} 
-        onClose={() => setFormOpen(false)} 
-        onSave={handleAdd} 
+      <div className="candidates-table-container">
+        <CandidatesTable
+          candidates={filteredCandidates}
+          onDelete={handleDelete}
+          onDownload={handleDownload}
+          onStatusChange={handleStatusChange}
+        />
+      </div>
+
+      <CandidateForm
+        open={formOpen}
+        onClose={() => setFormOpen(false)}
+        onSave={handleAdd}
       />
     </div>
   );

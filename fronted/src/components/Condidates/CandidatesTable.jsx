@@ -14,9 +14,31 @@ const getStatusColor = (status) => {
 
 const CandidatesTable = ({ candidates = [], onEdit, onDelete, onDownload, onStatusChange }) => {
   const [menuOpen, setMenuOpen] = useState(null);
+  const [menuPosition, setMenuPosition] = useState({});
 
-  const handleMenu = (id) => {
-    setMenuOpen(menuOpen === id ? null : id);
+  const handleMenu = (id, event) => {
+    if (menuOpen === id) {
+      setMenuOpen(null);
+      return;
+    }
+
+    // Check if menu should appear above or below
+    const button = event.currentTarget;
+    const buttonRect = button.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const menuHeight = 120; // Approximate height of the menu
+    
+    const spaceBelow = viewportHeight - buttonRect.bottom;
+    const spaceAbove = buttonRect.top;
+    
+    const shouldShowAbove = spaceBelow < menuHeight && spaceAbove > menuHeight;
+    
+    setMenuPosition(prev => ({
+      ...prev,
+      [id]: shouldShowAbove ? 'above' : 'below'
+    }));
+    
+    setMenuOpen(id);
   };
 
   // Close menu when clicking outside
@@ -112,34 +134,34 @@ const CandidatesTable = ({ candidates = [], onEdit, onDelete, onDownload, onStat
                   <div className="action-menu-container">
                     <button 
                       className="action-menu-btn"
-                      onClick={() => handleMenu(candidate.id)} 
+                      onClick={(e) => handleMenu(candidate.id, e)} 
                     >
                       <FiMoreVertical size={16} />
                     </button>
-                                    {menuOpen === candidate.id && (
-                    <div className="action-menu">
-                      <div 
-                        className="action-menu-item"
-                        onClick={() => {
-                          onDownload && onDownload(candidate);
-                          setMenuOpen(null);
-                        }}
-                      >
-                        <FiDownload size={14} />
-                        Download Resume
+                    {menuOpen === candidate.id && (
+                      <div className={`action-menu ${menuPosition[candidate.id] === 'above' ? 'above' : ''}`}>
+                        <div 
+                          className="action-menu-item"
+                          onClick={() => {
+                            onDownload && onDownload(candidate);
+                            setMenuOpen(null);
+                          }}
+                        >
+                          <FiDownload size={14} />
+                          Download Resume
+                        </div>
+                        <div 
+                          className="action-menu-item delete"
+                          onClick={() => {
+                            onDelete && onDelete(candidate);
+                            setMenuOpen(null);
+                          }}
+                        >
+                          <FiTrash2 size={14} />
+                          Delete Candidate
+                        </div>
                       </div>
-                      <div 
-                        className="action-menu-item delete"
-                        onClick={() => {
-                          onDelete && onDelete(candidate);
-                          setMenuOpen(null);
-                        }}
-                      >
-                        <FiTrash2 size={14} />
-                        Delete Candidate
-                      </div>
-                    </div>
-                  )}
+                    )}
                   </div>
                 </td>
               </tr>

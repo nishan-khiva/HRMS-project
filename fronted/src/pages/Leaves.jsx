@@ -3,6 +3,7 @@ import LeavesTable from '../components/Leaves/LeavesTable';
 import LeaveCalendar from '../components/Leaves/LeaveCalendar';
 import '../components/Leaves/LeavesTable.css';
 import '../components/Leaves/LeaveCalendar.css';
+import Header from '../components/Header';
 
 const initialLeaves = [
   {
@@ -31,20 +32,23 @@ const Leaves = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
-      <div style={{ flex: 2 }}>
-        <LeavesTable
-          leaves={leaves}
-          onStatusChange={handleStatusChange}
-          onDelete={handleDelete}
-          statusFilter={statusFilter}
-          setStatusFilter={setStatusFilter}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-        />
-      </div>
-      <div style={{ flex: 1, minWidth: 340 }}>
-        <LeaveCalendar />
+    <div>
+      <Header title="Leaves" count={leaves.length} />
+      <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+        <div style={{ flex: 2 }}>
+          <LeavesTable
+            leaves={leaves}
+            onStatusChange={handleStatusChange}
+            onDelete={handleDelete}
+            statusFilter={statusFilter}
+            setStatusFilter={setStatusFilter}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
+        </div>
+        <div style={{ flex: 1, minWidth: 340 }}>
+          <LeaveCalendar />
+        </div>
       </div>
     </div>
   );

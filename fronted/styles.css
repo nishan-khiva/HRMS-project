@@ -1,37 +1,15 @@
-/* .register-form {
-    width: 400px;
-    height: 476px;
-    gap: 20px
-}
-
-.register-form .heading h1 {
-    font: Nunito;
-    font-weight: 600;
-    font-size: 20px;
-    color: #121212;
-    font-style: semi-bold;
-}
-
-.register-form .form-group {
-    font: Nunito;
-    font-weight: 400;
-    font-size: 14px;
-    color: #121212
-}
-.form-group input{
-    width:375px;
-    height:54px;
-    border:1px solid #E5E5E5;
-    border-radius: 8px;
-    padding: 16px;
-    gap:8px;
-    color:#fff
-} */
-/* Reset and base */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Nunito';
+}
+
+html {
+    font-family: 'Nunito';
 }
 
 .container {

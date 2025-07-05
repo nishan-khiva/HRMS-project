@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiMoreVertical, FiEdit, FiTrash2, FiChevronDown } from 'react-icons/fi';
 import '../components/Attendance/Attendance.css';
+import Header from '../components/Header';
 
 const initialAttendance = [
   {
@@ -107,9 +108,7 @@ const Attendance = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-        <h2 style={{marginLeft: 24}}>Attendance</h2>
-      </div>
+      <Header title="Attendance" count={filteredAttendance.length} />
       <div className="menubar" style={{ marginBottom: 0 }}>
         {/* Status Dropdown */}
         <div className="attendance-status-filter-dropdown" style={{ position: 'relative' }}>
